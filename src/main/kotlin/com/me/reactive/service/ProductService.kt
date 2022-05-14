@@ -40,7 +40,7 @@ class ProductService(
     fun updateProduct(productDtoMono: Mono<ProductDto>, id: String): Mono<ProductDto> {
         return repository
             .findById(id)
-            .flatMap { p -> productDtoMono.map(AppUtils::dtoToEntity) }
+            .flatMap{(productDtoMono.map(AppUtils::dtoToEntity)) }
             .doOnNext { e -> e.id = id }
             .flatMap(repository::save)
             .map(AppUtils::entityToDto)
